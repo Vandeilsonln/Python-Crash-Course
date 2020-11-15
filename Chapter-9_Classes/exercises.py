@@ -17,12 +17,19 @@ class Shop():
         self.number_served += increment
 
 
+
+class IceCreamStand(Shop):
+    def __init__(self, name, cuisine_type):
+        super().__init__(name=name, cuisine_type=cuisine_type)
+        self.flavors = ['Chocolate', 'Strawberry', 'Passion fruit', 'Lemon', 'Nutella', 'Kinder', 'Blueberry']
+
+    def show_flavors(self):
+        print("These are our available flavors at the moment:")
+
+        for i in self.flavors:
+            print(i) 
+
+
 if __name__ == "__main__":
-    guadalajara = Shop('Guadalajara', 'Mexican')
-    guadalajara.describe_shop()
-    guadalajara.open_shop()
-    print(guadalajara.number_served)
-    guadalajara.set_number_served(50)
-    print(guadalajara.number_served)
-    guadalajara.increment_number_served(15)
-    print(guadalajara.number_served)
+    iceCreamShop = IceCreamStand('My Shop', 'Dessert')
+    iceCreamShop.show_flavors()
