@@ -4,13 +4,13 @@ from dog import Car
 class ElectricCar(Car):
     """Represents aspects of a car, specific to electric vehicles."""
 
-    def __init__(self, make, model, year, bs):
+    def __init__(self, make, model, year, battery_size):
         """
         Initialize atributes of the parent class.
         Then initialize attributes specific to an electric car.
         """
         super().__init__(make, model, year)
-        self.battery = Batery(bs)
+        self.battery = Batery(battery_size)
 
 
 class Batery():
@@ -33,11 +33,19 @@ class Batery():
 
         message = "this car can go approximately " + str(range) + " miles on a full charge"
         return message
+    
+    def upgrade_battery(self):
+        if self.battery_size == 70:
+            print('Your battery have been upgraded.')
+            self.battery_size = 85
+        elif self.battery_size == 85:
+            print('Your battery is already the most powerful one.')
 
 
 if __name__ == '__main__':
-    my_tesla = ElectricCar('Tesla', 'Model S', 2016, 85)
-    print(my_tesla.get_descriptive_name())
-    my_tesla.battery.describe_battery()
-    print(my_tesla.battery.battery_size)
-    print(my_tesla.battery.get_range())
+    my_car = ElectricCar('Tesla', 'Model S', 2019, 70)
+    print(my_car.battery.get_range())
+
+    my_car.battery.upgrade_battery()
+
+    print(my_car.battery.get_range())
