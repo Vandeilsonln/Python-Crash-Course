@@ -42,12 +42,18 @@ class User():
 class Admin(User):
     def __init__(self, name, age):
         super().__init__(name=name, age=age)
-        self.privileges = ['Can add post', 'Can delete post', 'Can ban user']
+        self.privileges = Privilege()        
 
+
+class Privilege():
+    def __init__(self):
+        self.privileges = ['Can add post', 'Can delete post', 'Can ban user']
+    
     def show_privileges(self):
         for i in self.privileges:
             print(i)
 
+
 if __name__ == "__main__":
     admin = Admin('Van', 22)
-    admin.show_privileges()
+    admin.privileges.show_privileges()
