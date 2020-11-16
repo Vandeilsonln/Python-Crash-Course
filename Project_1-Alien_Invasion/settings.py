@@ -1,4 +1,5 @@
 #! python3
+import pygame
 
 class Settings():
     """A class to store all setting for Aliens Invasion."""
@@ -7,4 +8,3 @@ class Settings():
         # -- Screen settings -- #
         self.screen_width = 900
         self.screen_height = 680
-        self.bg_color = (230, 230, 230)
