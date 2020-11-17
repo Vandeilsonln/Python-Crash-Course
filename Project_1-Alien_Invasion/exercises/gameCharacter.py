@@ -16,7 +16,7 @@ class Character():
         self.screen_size = self.screen.get_rect()
 
         # Set position of the char on the screen
-        self.char_size.left = self.screen_size.left + 50
+        self.char_size.left = self.screen_size.left + 40
         self.char_size.centery = self.screen_size.centery
 
 
