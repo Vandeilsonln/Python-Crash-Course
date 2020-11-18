@@ -3,7 +3,7 @@
 # movingChar.py - Create a game with a background and an character. Make it move through the screen and set edge limits.
 
 
-import pygame
+import pygame, sys
 
 
 # Set up game
@@ -27,7 +27,20 @@ class Character():
         # Set initial position
         self.char_size.centerx = self.screen_size.centerx
         self.char_size.centery = self.screen_size.centery
-
+    
+    def update_char_position():
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    self.char_size.centerx += 1
+                if event.key == pygame.K_LEFT:
+                    self.char_size.centerx -= 1
+                if event.key == pygame.K_UP:
+                    self.char_size.centery -= 1
+                if event.key == pygame.K_DOWN:
+                    self.char_size.centery += 1
 
 # Place it on the screen
 mainChar = Character(myScreen)
