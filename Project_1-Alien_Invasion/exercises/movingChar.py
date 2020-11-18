@@ -2,7 +2,6 @@
 
 # movingChar.py - Create a game with a background and an character. Make it move through the screen and set edge limits.
 
-
 import pygame, sys
 
 
