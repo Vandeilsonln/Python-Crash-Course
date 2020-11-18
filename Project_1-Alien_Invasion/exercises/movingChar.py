@@ -44,6 +44,8 @@ class Character():
 # Place it on the screen
 mainChar = Character(myScreen)
 myScreen.blit(mainChar.myChar, mainChar.char_size)
+
 # While loop
 while True:
+    mainChar.update_char_position()
     pygame.display.flip()   # show the most recent screen
