@@ -7,4 +7,4 @@ class Settings():
         # Screen Settings.
         self.screen_width = 1080
         self.screen_height = 720
-        self.bg_image = pygame.image.load('Project_1-Alien_Invasion/_images/background_stars.jpg').convert()
+        self.bg_image = pygame.image.load('Project_1-Alien_Invasion/_images/background_stars.jpg')

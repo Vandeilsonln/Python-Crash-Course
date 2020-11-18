@@ -17,7 +17,7 @@ def run_game():
                 sys.exit()
         
         # Redraw the screen during each pass through the loop.
-        myScreen.blit(mySettings.bg_image, [0, 0])
+        myScreen.blit(mySettings.bg_image.convert(), [0, 0])
         # make the most recently drawn screen visible.
         pygame.display.flip()
 
