@@ -74,6 +74,7 @@ def check_keyup_event(event, char):
 
 def check_events(char):
     for event in pygame.event.get():
+        print_event(event)
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
@@ -89,6 +90,10 @@ def update_screen(char, screen):
 
     # Blit character
     screen.blit(myChar.char_image, myChar.char_rect)
+
+def print_event(event):
+    if event.type == pygame.KEYDOWN:
+        print(event)
 
 # Create Character
 myChar = Character(myScreen)
