@@ -36,8 +36,7 @@ class Character():
     # Character speed
     self.char_speed = 2
 
-
-    def update_char_position(event, char):
+    def update_char_position():
         # It will set the flags to true based on which event was passed.
         if self.moving_left and self.char_rect.left > 0:
             self.char_rect.centerx -= self.char_speed
@@ -51,9 +50,6 @@ class Character():
         if self.moving_down and self.char_rect.bottom < self.screen_rect.bottom:
             self.char_rect.centery += self.char_speed
 
-
-# Create Character
-myChar = Character(myScreen)
 
 # Function to handle events
 def check_keydown_event(event, char):
@@ -85,13 +81,27 @@ def check_events(char):
         elif event.type == pygame.KEYUP:
             check_keyup_event(event, char)
 
+
+# Function to draw screen
+def update_screen(char, screen):
+    # Blit Background
+    screen.blit(bg_image.convert(), [0, 0])
+
+    # Blit character
+    screen.blit(myChar.char_image, myChar.char_rect)
+
+# Create Character
+myChar = Character(myScreen)
+
 while True:
     # Check for keyboard presses
+    check_events(myChar)
 
     # Update the position
-
+    myChar.update_char_position()
 
     # Blit background and ship
+    update_screen(myChar, myScreen)
 
     # Show the most recently drawn screen
     pygame.display.flip()
