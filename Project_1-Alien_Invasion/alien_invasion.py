@@ -19,8 +19,8 @@ def run_game():
     while True:
 
         # Watch for keyboard and mouse events.
-        gf.check_events()   # Handles keyboard
-        
+        gf.check_events(ship)   # Handles keyboard
+        ship.update_ship_position()        
         gf.update_screen(mySettings, myScreen, ship)    # Blit ship, background and update screen  
 
         # make the most recently drawn screen visible.
