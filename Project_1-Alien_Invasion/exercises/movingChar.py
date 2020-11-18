@@ -13,28 +13,28 @@ bg_image = pygame.image.load('./Project_1-Alien_Invasion/exercises/images/game_b
 
 # Create a character class
 class Character():
-    def __init__(self, screen)
+    def __init__(self, screen):
     
-    self.char_image = pygame.image.load('./Project_1-Alien_Invasion/exercises/images/game_char.png')
-    self.screen = screen
+        self.char_image = pygame.image.load('./Project_1-Alien_Invasion/exercises/images/game_char.png')
+        self.screen = screen
 
-    # Get the character rect
-    self.char_rect = self.char_image.get_rect()
-    # Get the screen rect
-    self.screen_rect = self.screen.get_rect()
+        # Get the character rect
+        self.char_rect = self.char_image.get_rect()
+        # Get the screen rect
+        self.screen_rect = self.screen.get_rect()
 
-    # Initialize the char image on the center of the screen
-    self.char_rect.centerx = self.screen_rect.centerx
-    self.char_rect.centery = self.screen_rect.centery
+        # Initialize the char image on the center of the screen
+        self.char_rect.centerx = self.screen_rect.centerx
+        self.char_rect.centery = self.screen_rect.centery
 
-    # Create flags to allow continuous movement
-    self.moving_right = False
-    self.moving_left = False
-    self.moving_up = False
-    self.moving_down = False
+        # Create flags to allow continuous movement
+        self.moving_right = False
+        self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
 
-    # Character speed
-    self.char_speed = 2
+        # Character speed
+        self.char_speed = 2
 
     def update_char_position():
         # It will set the flags to true based on which event was passed.
