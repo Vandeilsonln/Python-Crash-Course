@@ -56,6 +56,34 @@ class Character():
 myChar = Character(myScreen)
 
 # Function to handle events
+def check_keydown_event(event, char):
+    if event.key == pygame.K_LEFT:
+        char.moving_left = True
+    elif event.key == pygame.K_RIGHT:
+        char.moving_right = True
+    elif event.key == pygame.K_UP:
+        char.moving_up = True
+    elif event.key == pygame.K_DOWN:
+        char.moving_down = True
+
+def check_keyup_event(event, char):
+    if event.key == pygame.K_LEFT:
+        char.moving_left = False
+    elif event.key == pygame.K_RIGHT:
+        char.moving_right = False
+    elif event.key == pygame.K_UP:
+        char.moving_up = False
+    elif event.key == pygame.K_DOWN:
+        char.moving_down = False
+
+def check_events(char):
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            check_keydown_event(event, char)
+        elif event.type == pygame.KEYUP:
+            check_keyup_event(event, char)
 
 while True:
     # Check for keyboard presses
