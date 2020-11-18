@@ -36,7 +36,7 @@ class Character():
         # Character speed
         self.char_speed = 2
 
-    def update_char_position():
+    def update_char_position(self):
         # It will set the flags to true based on which event was passed.
         if self.moving_left and self.char_rect.left > 0:
             self.char_rect.centerx -= self.char_speed
@@ -44,7 +44,7 @@ class Character():
         if self.moving_right and self.char_rect.right < self.screen_rect.right:
             self.char_rect.centerx += self.char_speed
         
-        if self.moving_up and self.char_rect.up > 0:
+        if self.moving_up and self.char_rect.top > 0:
             self.char_rect.centery -= self.char_speed
         
         if self.moving_down and self.char_rect.bottom < self.screen_rect.bottom:
