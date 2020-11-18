@@ -8,3 +8,6 @@ class Settings():
         self.screen_width = 1080
         self.screen_height = 620
         self.bg_image = pygame.image.load('Project_1-Alien_Invasion/_images/background_stars.jpg')
+        
+        # Ship Settings
+        self.ship_speed_factor = 2
