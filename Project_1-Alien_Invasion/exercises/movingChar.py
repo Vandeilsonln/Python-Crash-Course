@@ -116,12 +116,12 @@ def check_events(char, screen, bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_event(event, char)
 
-
-# Blit Background
-    myScreen.blit(bg_image.convert(), [0, 0])
+background_scroll = 0
 
 # Function to draw screen
 def update_screen(char, screen, bullets):
+    # Blit Background
+    myScreen.blit(bg_image.convert(), [background_scroll, 0])
 
     # Move background
     move_background(myScreen)
@@ -134,7 +134,12 @@ def update_screen(char, screen, bullets):
     screen.blit(myChar.char_image, myChar.char_rect)
 
 def move_background(screen):
-    myScreen.scroll(1, 0)
+    global background_scroll
+    if background_scroll > (bg_image.get_width()/2 - 34) * -1:
+        background_scroll -= 5
+    else:
+        background_scroll = 0
+    
 
 
 # Create Character
