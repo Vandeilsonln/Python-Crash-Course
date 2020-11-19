@@ -21,16 +21,16 @@ class Bullet(Sprite):
         self.color = ai_settings.bullet_color
         self.speed_factor = ai_settings.bullet_speed_factor
 
-        def update_bullet_position(self):
-            # Move the bullet up the screen
+    def update(self):
+        # Move the bullet up the screen
 
-            # Update the decimal position of the bullet.
-            self.y -= self.speed_factor
+        # Update the decimal position of the bullet.
+        self.y -= self.speed_factor
 
-            # Update the rect position.
-            self.bullet_rect.y = self.y
+        # Update the rect position.
+        self.bullet_rect.y = self.y
         
-        def draw_bullet(self):
-            # Draw the bullet to the screen.
-            pygame.draw.rect(self.screen, self.color, self.rect)    # TODO: use self.screen.blit() method to place an image instead of a rect.
+    def draw_bullet(self):
+        # Draw the bullet to the screen.
+        pygame.draw.rect(self.screen, self.color, self.bullet_rect)    # TODO: use self.screen.blit() method to place an image instead of a rect.
             
