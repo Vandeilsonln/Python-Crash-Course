@@ -9,7 +9,7 @@ myScreen = pygame.display.set_mode((1004, 626))
 pygame.display.set_caption('Moving character')
 
 # Create a background
-bg_image = pygame.image.load('./Project_1-Alien_Invasion/exercises/images/game_bg.jpg')
+bg_image = pygame.image.load('./Project_1-Alien_Invasion/exercises/images/moving_bg.jpg')
 
 # Create a character class
 class Character():
@@ -60,7 +60,7 @@ class Bullets(pygame.sprite.Sprite):
         self.allowed_bullets = 3
 
         # Create a bullet rect and then put it to the right position
-        self.bullet_rect = pygame.Rect(0, 0, 20, 12)
+        self.bullet_rect = pygame.Rect(0, 0, 20, 5)
         self.bullet_rect.centery = character.char_rect.centery 
         self.bullet_rect.right = character.char_rect.right
 
@@ -116,10 +116,15 @@ def check_events(char, screen, bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_event(event, char)
 
+
+# Blit Background
+    myScreen.blit(bg_image.convert(), [0, 0])
+
 # Function to draw screen
 def update_screen(char, screen, bullets):
-    # Blit Background
-    screen.blit(bg_image.convert(), [0, 0])
+
+    # Move background
+    move_background(myScreen)
 
     # Update bullet's position
     for bullet in bullets.sprites():
@@ -127,6 +132,10 @@ def update_screen(char, screen, bullets):
     
     # Blit character
     screen.blit(myChar.char_image, myChar.char_rect)
+
+def move_background(screen):
+    myScreen.scroll(1, 0)
+
 
 # Create Character
 myChar = Character(myScreen)
