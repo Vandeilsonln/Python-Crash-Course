@@ -10,4 +10,10 @@ class Settings():
         self.bg_image = pygame.image.load('Project_1-Alien_Invasion/_images/background_stars.jpg')
         
         # Ship Settings
-        self.ship_speed_factor = 2
+        self.ship_speed_factor = 3
+
+        # Bullet settings
+        self.bullet_speed_factor = 2
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = 130, 60, 60
