@@ -61,8 +61,8 @@ class Bullets(pygame.sprite.Sprite):
 
         # Create a bullet rect and then put it to the right position
         self.bullet_rect = pygame.Rect(0, 0, 20, 12)
-        self.bullet_y_position = character.char_rect.centery 
-        self.bullet_x_position = character.char_rect.right
+        self.bullet_rect.centery = character.char_rect.centery 
+        self.bullet_rect.right = character.char_rect.right
 
     def update(self, character):
         # Move bullet to the right corner
@@ -121,12 +121,12 @@ def update_screen(char, screen, bullets):
     # Blit Background
     screen.blit(bg_image.convert(), [0, 0])
 
-    # Blit character
-    screen.blit(myChar.char_image, myChar.char_rect)
-
     # Update bullet's position
     for bullet in bullets.sprites():
         bullet.draw_bullet()
+    
+    # Blit character
+    screen.blit(myChar.char_image, myChar.char_rect)
 
 # Create Character
 myChar = Character(myScreen)
