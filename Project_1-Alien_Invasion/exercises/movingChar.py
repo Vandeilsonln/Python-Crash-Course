@@ -57,6 +57,7 @@ class Bullets(pygame.sprite.Sprite):
         self.color = 50, 120, 70
         self.bullet_speed = 1
         self.screen = screen
+        self.allowed_bullets = 3
 
         # Create a bullet rect and then put it to the right position
         self.bullet_rect = pygame.Rect(0, 0, 20, 12)
@@ -72,44 +73,60 @@ class Bullets(pygame.sprite.Sprite):
 
 
 # Function to handle events
-def check_keydown_event(event, char):
+def check_keydown_event(event, char, screen, bullets):
     if event.key == pygame.K_LEFT:
         char.moving_left = True
+    
     elif event.key == pygame.K_RIGHT:
         char.moving_right = True
+    
     elif event.key == pygame.K_UP:
         char.moving_up = True
+    
     elif event.key == pygame.K_DOWN:
         char.moving_down = True
+
+    elif event.key == pygame.K_SPACE:
+        fire_bullet(char, screen, bullets)
+
+def fire_bullet(character, screen, bullet):
+    if len(bullet) < 3: # myBullets.allowed_bullets:
+        new_bullet = Bullets(character, screen)
+        myBullets.add(new_bullet)    
 
 def check_keyup_event(event, char):
     if event.key == pygame.K_LEFT:
         char.moving_left = False
+    
     elif event.key == pygame.K_RIGHT:
         char.moving_right = False
+    
     elif event.key == pygame.K_UP:
         char.moving_up = False
+    
     elif event.key == pygame.K_DOWN:
         char.moving_down = False
 
-def check_events(char):
+def check_events(char, screen, bullets):
     for event in pygame.event.get():
-        print_event(event)
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            check_keydown_event(event, char)
+            check_keydown_event(event, char, screen, bullets)
         elif event.type == pygame.KEYUP:
             check_keyup_event(event, char)
 
-
 # Function to draw screen
-def update_screen(char, screen):
+def update_screen(char, screen, bullets):
     # Blit Background
     screen.blit(bg_image.convert(), [0, 0])
 
     # Blit character
     screen.blit(myChar.char_image, myChar.char_rect)
+
+    # Update bullet's position
+    for bullet in bullets.sprites():
+        bullet.draw_bullet()
 
 # Create Character
 myChar = Character(myScreen)
@@ -119,15 +136,16 @@ myBullets = Group()
 
 while True:
     # Check for keyboard presses
-    check_events(myChar)
+    check_events(myChar, myScreen, myBullets)
 
     # Update character position
     myChar.update_char_position()
 
     # Update bullet position
+    myBullets.update()
 
     # Blit background, character and bullets
-    update_screen(myChar, myScreen)
+    update_screen(myChar, myScreen, myBullets)
 
     # Show the most recently drawn screen
     pygame.display.flip()
