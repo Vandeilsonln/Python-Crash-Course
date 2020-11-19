@@ -61,12 +61,13 @@ class Bullets(pygame.sprite.Sprite):
 
         # Create a bullet rect and then put it to the right position
         self.bullet_rect = pygame.Rect(0, 0, 20, 12)
-        self.bullet_y_position = character.char_rect.centery
+        self.bullet_y_position = character.char_rect.centery 
         self.bullet_x_position = character.char_rect.right
 
-    def update(self):
+    def update(self, character):
         # Move bullet to the right corner
         self.bullet_rect.x += self.bullet_speed
+    
 
     def draw_bullet(self):
         pygame.draw.rect(self.screen, self.color, self.bullet_rect)
@@ -90,9 +91,8 @@ def check_keydown_event(event, char, screen, bullets):
         fire_bullet(char, screen, bullets)
 
 def fire_bullet(character, screen, bullet):
-    if len(bullet) < 3: # myBullets.allowed_bullets:
-        new_bullet = Bullets(character, screen)
-        myBullets.add(new_bullet)    
+    new_bullet = Bullets(character, screen)
+    myBullets.add(new_bullet)    
 
 def check_keyup_event(event, char):
     if event.key == pygame.K_LEFT:
@@ -142,7 +142,7 @@ while True:
     myChar.update_char_position()
 
     # Update bullet position
-    myBullets.update()
+    myBullets.update(myChar)
 
     # Blit background, character and bullets
     update_screen(myChar, myScreen, myBullets)
