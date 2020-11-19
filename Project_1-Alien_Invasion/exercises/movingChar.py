@@ -1,5 +1,5 @@
 import pygame, sys
-
+from pygame.sprite import Group
 
 # Set up pygame
 pygame.init()
@@ -50,6 +50,26 @@ class Character():
         if self.moving_down and self.char_rect.bottom < self.screen_rect.bottom:
             self.char_rect.centery += self.char_speed
 
+class Bullets(pygame.sprite.Sprite):
+    def __init__(self, character, screen):
+        super().__init__()
+
+        self.color = 50, 120, 70
+        self.bullet_speed = 1
+        self.screen = screen
+
+        # Create a bullet rect and then put it to the right position
+        self.bullet_rect = pygame.Rect(0, 0, 20, 12)
+        self.bullet_y_position = character.char_rect.centery
+        self.bullet_x_position = character.char_rect.right
+
+    def update(self):
+        # Move bullet to the right corner
+        self.bullet_rect.x += self.bullet_speed
+
+    def draw_bullet(self):
+        pygame.draw.rect(self.screen, self.color, self.bullet_rect)
+
 
 # Function to handle events
 def check_keydown_event(event, char):
@@ -91,21 +111,22 @@ def update_screen(char, screen):
     # Blit character
     screen.blit(myChar.char_image, myChar.char_rect)
 
-def print_event(event):
-    if event.type == pygame.KEYDOWN:
-        print(event)
-
 # Create Character
 myChar = Character(myScreen)
+
+# Create Bullets
+myBullets = Group()
 
 while True:
     # Check for keyboard presses
     check_events(myChar)
 
-    # Update the position
+    # Update character position
     myChar.update_char_position()
 
-    # Blit background and ship
+    # Update bullet position
+
+    # Blit background, character and bullets
     update_screen(myChar, myScreen)
 
     # Show the most recently drawn screen
