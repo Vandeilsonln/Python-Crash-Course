@@ -26,13 +26,7 @@ def run_game():
         # Watch for keyboard and mouse events.
         gf.check_events(mySettings, myScreen, ship, bullets)   # Handles keyboard
         ship.update_ship_position()
-        bullets.update() 
-
-        # Get rid of bullets that have disappeared.
-        for bullet in bullets.copy():
-            if bullet.bullet_rect.bottom <= 0:
-                bullets.remove(bullet)
-
+        gf.update_bullets(bullets) 
         gf.update_screen(mySettings, myScreen, ship, bullets)    # Blit ship, background and update screen  
 
         # make the most recently drawn screen visible.
