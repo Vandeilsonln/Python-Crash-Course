@@ -60,7 +60,7 @@ def move_background(settings):
     if settings.bg_initial_position < 0:
         settings.bg_initial_position += settings.bg_moving_speed
     else:
-        settings.bg_initial_position = -360
+        settings.bg_initial_position = -1705
 
 def update_bullets(bullets):
     # Update position of bullets and get rid of old bullets.

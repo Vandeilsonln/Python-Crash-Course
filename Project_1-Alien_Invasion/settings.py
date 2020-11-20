@@ -5,11 +5,11 @@ class Settings():
 
     def __init__(self):
         # Screen Settings.
-        self.screen_width = 720
-        self.screen_height = 680
+        self.screen_width = 1080
+        self.screen_height = 630
         self.bg_image = pygame.image.load('Project_1-Alien_Invasion/_images/background_stars_moving.jpg')
-        self.bg_moving_speed = 1
-        self.bg_initial_position = -360
+        self.bg_moving_speed = 5
+        self.bg_initial_position = -1705
         
         # Ship Settings
         self.ship_speed_factor = 2
