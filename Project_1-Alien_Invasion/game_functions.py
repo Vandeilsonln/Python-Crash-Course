@@ -114,5 +114,3 @@ def create_fleet(ai_settings, screen, aliens, ship):
         for alien_number in range(number_aliens_x):
             # Create an alien and place it in the row
             create_alien(ai_settings, screen, aliens, alien_number, alien_factor, row_number)
-
-
