@@ -42,7 +42,10 @@ def check_events(ai_settings, screen, ship, bullets):
 
 def update_screen(settings, screen, ship, bullets):
     # Update images on the screen and flip to the new screen.
-    screen.blit(settings.bg_image.convert(), [0, 0])  # Blit background
+    screen.blit(settings.bg_image.convert(), [0, settings.bg_initial_position])  # Blit background
+
+    # Move background
+    move_background(settings)    
 
     # Redraw all bullets hebind ship and aliens.
     for bullet in bullets.sprites():
@@ -52,6 +55,12 @@ def update_screen(settings, screen, ship, bullets):
 
     # Make the most recently drawn screen visible.
     pygame.display.flip()
+
+def move_background(settings):
+    if settings.bg_initial_position < 0:
+        settings.bg_initial_position += settings.bg_moving_speed
+    else:
+        settings.bg_initial_position = -360
 
 def update_bullets(bullets):
     # Update position of bullets and get rid of old bullets.
