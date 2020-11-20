@@ -21,8 +21,11 @@ def run_game():
     # Make a group to store bullets in.
     bullets = Group()
 
-    # Make an alien.
-    alien = Alien(mySettings, myScreen)
+    # Make a group to store the alien fleet.
+    aliens = Group()
+
+    # Create the fleet of aliens.
+    gf.create_fleet(mySettings, myScreen, aliens)
 
     # Start the main loop for the game.
     while True:
@@ -31,7 +34,7 @@ def run_game():
         gf.check_events(mySettings, myScreen, ship, bullets)   # Handles keyboard
         ship.update_ship_position()
         gf.update_bullets(bullets) 
-        gf.update_screen(mySettings, myScreen, ship, bullets, alien)    # Blit ship, background and update screen  
+        gf.update_screen(mySettings, myScreen, ship, bullets, aliens)    # Blit ship, background and update screen  
 
         # make the most recently drawn screen visible.
         pygame.display.flip()
