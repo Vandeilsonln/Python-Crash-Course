@@ -77,7 +77,7 @@ def update_bullets(bullets):
 
 def get_number_aliens_x(ai_settings, alien_width, factor):
     # Determine the numer of aliens that fit in a row.
-    available_space_x = ai_settings.screen_width - factor * 
+    available_space_x = ai_settings.screen_width - factor * alien_width
     number_aliens_x = int(available_space_x / (factor * alien_width))
 
     return number_aliens_x
