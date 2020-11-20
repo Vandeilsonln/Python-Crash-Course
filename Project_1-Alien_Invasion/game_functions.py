@@ -40,7 +40,7 @@ def check_events(ai_settings, screen, ship, bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
 
-def update_screen(settings, screen, ship, bullets):
+def update_screen(settings, screen, ship, bullets, alien):
     # Update images on the screen and flip to the new screen.
     screen.blit(settings.bg_image.convert(), [0, settings.bg_initial_position])  # Blit background
 
@@ -52,6 +52,7 @@ def update_screen(settings, screen, ship, bullets):
         bullet.draw_bullet()
 
     ship.blitme()   # Blit ship
+    alien.blitme()  # Blit alien
 
     # Make the most recently drawn screen visible.
     pygame.display.flip()
