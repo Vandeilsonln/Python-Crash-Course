@@ -12,6 +12,7 @@ class Bullet(Sprite):
 
         # Create a bullet rect at (0,0) and then set current position.
         self.bullet_rect = pygame.Rect(0, 0, ai_settings.bullet_width, ai_settings.bullet_height) # TODO: Replace this RECT object for an bullet image.
+        self.rect = self.bullet_rect
         self.bullet_rect.centerx = ship.rect.centerx
         self.bullet_rect.top = ship.rect.top
 

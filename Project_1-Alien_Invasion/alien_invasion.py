@@ -34,7 +34,7 @@ def run_game():
         # Watch for keyboard and mouse events.
         gf.check_events(mySettings, myScreen, ship, bullets)   # Handles keyboard
         ship.update_ship_position()
-        gf.update_bullets(bullets)
+        gf.update_bullets(aliens, bullets)
         gf.update_aliens(mySettings, aliens)
         gf.update_screen(mySettings, myScreen, ship, bullets, aliens)    # Blit ship, background and update screen  
 
