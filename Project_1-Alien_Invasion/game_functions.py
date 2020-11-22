@@ -64,7 +64,7 @@ def move_background(settings):
     else:
         settings.bg_initial_position = -1705
 
-def update_bullets(aliens, bullets):
+def update_bullets(aliens, bullets, screen, ship, ai_settings):
     # Update position of bullets and get rid of old bullets.
     
     # Update bullet position.
@@ -78,6 +78,11 @@ def update_bullets(aliens, bullets):
     # Check for any bullets that have hit aliens.
     # If so, get rid of the bullet and the alien
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+
+    if len(aliens) == 0:
+        # Destroy existing bullets and create new fleet.
+        bullets.empty()
+        create_fleet(ai_settings, screen, aliens, ship)
 
 def get_number_aliens_x(ai_settings, alien_width, factor):
     # Determine the numer of aliens that fit in a row.
