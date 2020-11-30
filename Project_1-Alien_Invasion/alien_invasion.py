@@ -39,7 +39,7 @@ def run_game():
     while True:
 
         # Watch for keyboard and mouse events.
-        gf.check_events(mySettings, myScreen, ship, bullets)   # Handles keyboard
+        gf.check_events(mySettings, myScreen, ship, bullets, stats, play_button)   # Handles keyboard
 
         if stats.game_active:
             ship.update_ship_position()
