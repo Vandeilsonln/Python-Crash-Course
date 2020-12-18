@@ -30,7 +30,7 @@ def check_keyup_events(event, ship):
         # Stop moving to the left
         ship.moving_left = False
 
-def check_events(ai_settings, screen, ship, bullets, stats, play_button):
+def check_events(ai_settings, screen, ship, bullets, stats, play_button, aliens):
     # Respond to keypresses and mouse events.
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -38,7 +38,7 @@ def check_events(ai_settings, screen, ship, bullets, stats, play_button):
         
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(stats, play_button, mouse_x, mouse_y)
+            check_play_button(stats, play_button, mouse_x, mouse_y, ai_settings, screen, ship, aliens, bullets)
 
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event, ai_settings,screen, ship, bullets)
@@ -46,10 +46,21 @@ def check_events(ai_settings, screen, ship, bullets, stats, play_button):
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
 
-def check_play_button(stats, play_button, mouse_x, mouse_y):
+def check_play_button(stats, play_button, mouse_x, mouse_y, ai_settings, screen, ship, aliens, bullets):
     # Start a new game when the player clicks Play
-    if play_button.rect.collidepoint(mouse_x, mouse_y):
+    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+    if button_clicked and not stats.game_active:
+        # Reset the game statistics.
+        stats.reset_stats()
         stats.game_active = True
+
+        # Empty the list of aliens and bullets.
+        aliens.empty()
+        bullets.empty()
+
+        # Create a new fleet and center the ship.
+        create_fleet(ai_settings=ai_settings, screen=screen, ship=ship, aliens=aliens)
+        ship.center_ship()
 
 def update_screen(settings, screen, ship, bullets, alien, play_button, stats):
     # Update images on the screen and flip to the new screen.
