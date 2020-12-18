@@ -6,6 +6,7 @@ import game_functions as gf
 from alien import Alien
 from game_stats import GameStats
 from button import Button
+from scoreboard import Scoreboard
 
 def run_game():
     # Initialize game, settings and screen object.
@@ -19,8 +20,9 @@ def run_game():
     # Make the Play! button
     play_button = Button(mySettings, myScreen,"Play!")
 
-    # Create an instance to store game statistics.
+    # Crete an instance to store game statistics and create a scoreboard
     stats = GameStats(mySettings)
+    sb = Scoreboard(myScreen, myScreen, stats)
 
     # Make a ship
     ship = Ship(mySettings, myScreen)
@@ -46,7 +48,7 @@ def run_game():
             gf.update_bullets(aliens, bullets, myScreen, ship, mySettings)
             gf.update_aliens(mySettings, aliens, ship, stats, bullets, myScreen)
         
-        gf.update_screen(mySettings, myScreen, ship, bullets, aliens, play_button, stats)    # Blit ship, background and update screen  
+        gf.update_screen(mySettings, myScreen, ship, bullets, aliens, play_button, stats, sb)    # Blit ship, background and update screen  
 
         # make the most recently drawn screen visible.
         pygame.display.flip()

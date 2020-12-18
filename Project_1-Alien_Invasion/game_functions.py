@@ -67,7 +67,7 @@ def check_play_button(stats, play_button, mouse_x, mouse_y, ai_settings, screen,
         create_fleet(ai_settings=ai_settings, screen=screen, ship=ship, aliens=aliens)
         ship.center_ship()
 
-def update_screen(settings, screen, ship, bullets, alien, play_button, stats):
+def update_screen(settings, screen, ship, bullets, alien, play_button, stats, sb):
     # Update images on the screen and flip to the new screen.
     screen.blit(settings.bg_image.convert(), [0, settings.bg_initial_position])  # Blit background
 
@@ -80,6 +80,9 @@ def update_screen(settings, screen, ship, bullets, alien, play_button, stats):
 
     ship.blitme()   # Blit ship
     alien.draw(screen)  # Draw fleet of alien on the screen
+
+    # Draw the score information.
+    sb.show_score()
 
     # Draw the play button if the game is inactive.
     if not stats.game_active:
