@@ -8,7 +8,7 @@ class Settings():
         self.screen_width = 1080
         self.screen_height = 630
         self.bg_image = pygame.image.load('Project_1-Alien_Invasion/_images/background_stars_moving.jpg')
-        self.bg_moving_speed = 0.4
+        self.bg_moving_speed = 0.3
         self.bg_initial_position = -1705
         
         # Ship Settings
@@ -29,7 +29,7 @@ class Settings():
         self.fleet_direction = 1
 
         # How quickly the game speeds up
-        self.speedup_scale = 1.2
+        self.speedup_scale = 1.15
 
         self.initialize_dynamic_settings()
     
@@ -37,8 +37,8 @@ class Settings():
         """Initialize settings that change throughout the game."""
         self.ship_speed_factor = 1.5
         self.bullet_speed_factor = 3
-        self.alien_speed_factor = 1
-        self.bg_moving_speed = 0.2
+        self.alien_speed_factor = 1.1
+        self.bg_moving_speed = 0.3
 
         # Fleet_direction of 1 represents right | -1 represents left.
         self.fleet_direction = 1
@@ -46,6 +46,6 @@ class Settings():
     def increase_speed(self):
         # Increase speed settings
         self.ship_speed_factor *= self.speedup_scale
-        self.bullet_speed_factor *= self.speedup_scale
+        self.bullet_speed_factor *= (self.speedup_scale / 0.8)
         self.alien_speed_factor *= self.speedup_scale
-        self.bg_moving_speed *= self.speedup_scale
+        self.bg_moving_speed *= (self.speedup_scale * 1.4)
