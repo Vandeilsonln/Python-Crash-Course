@@ -9,6 +9,7 @@ from button import Button
 from scoreboard import Scoreboard
 
 def run_game():
+
     # Initialize game, settings and screen object.
     pygame.init()
     mySettings = Settings()
@@ -46,7 +47,7 @@ def run_game():
         if stats.game_active:
             ship.update_ship_position()
             gf.update_bullets(aliens, bullets, myScreen, ship, mySettings, stats, sb)
-            gf.update_aliens(mySettings, aliens, ship, stats, bullets, myScreen)
+            gf.update_aliens(mySettings, aliens, ship, stats, bullets, myScreen, sb)
         
         gf.update_screen(mySettings, myScreen, ship, bullets, aliens, play_button, stats, sb)    # Blit ship, background and update screen  
 
