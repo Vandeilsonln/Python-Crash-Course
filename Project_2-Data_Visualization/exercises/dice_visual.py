@@ -1,4 +1,5 @@
 from dice import Dice
+import pygal
 
 # Create a D6
 dice = Dice()
@@ -17,14 +18,3 @@ for value in range(1, dice.num_sides + 1):
     frequencies.append(frequency)
 
 print(frequencies)
-
-# test
-percent = [(i / number_rolls * 100) for i in frequencies]
-print(percent)
-
-# test 2 
-data = {}
-for i in range(1, dice.num_sides+1):
-    data[i] = percent[i-1]
-
-print(data)
