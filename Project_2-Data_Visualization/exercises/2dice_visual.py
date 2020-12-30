@@ -4,7 +4,7 @@ import pygal
 # Create two D6 dice
 dice1 = Dice()
 dice2 = Dice()
-number_rolls = 1000
+number_rolls = 10000
 
 # Make some rolls, and store results in a list
 results = []
