@@ -11,7 +11,7 @@ while True:
     plt.figure(figsize=(10, 6))
 
     point_numbers = list(range(0, rw.num_points))
-    plt.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Wistia, edgecolor='none', s=1)
+    plt.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Wistia, edgecolor='none', s=2)
 
     # Emphasize the first and last points
     plt.scatter(0, 0, c='green', edgecolors='none', s=20)
