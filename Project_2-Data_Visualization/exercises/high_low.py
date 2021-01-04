@@ -10,13 +10,13 @@ chdir('./Project_2-Data_Visualization/exercises')
 def convertTemperature(degrees):
     return int(round((degrees - 32) * 5 / 9, 0))
 
-# Get dates and high temperatures from file.
-filename = 'sitka_weather_07-2014.csv'
+# Get dates, high and low temperatures from file.
+filename = 'sitka_weather_2014.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
     
-    dates, highs = [], []
+    dates, highs, lows = [], [], []
     for row in reader:
         current_date = datetime.strptime(row[0], "%Y-%m-%d")
         dates.append(current_date)
@@ -25,15 +25,20 @@ with open(filename) as f:
         highCelsius = convertTemperature(highFarenheit)
         highs.append(highCelsius)
 
+        lowFahrenheit = int(row[3])
+        lowCelsius = convertTemperature(lowFahrenheit)
+        lows.append(lowCelsius)
+
 # Plot data
-fig = plt.figure(dpi=128, figsize=(8, 5))
+fig = plt.figure(dpi=128, figsize=(9, 5))
 plt.plot(dates, highs, c='red')
+plt.plot(dates, lows, c='blue')
 
 # Format plot
-plt.title('Daily high temperatures, July 2014', fontsize=24)
-plt.xlabel('', fontsize=16)
+plt.title('Daily high and low temperatures - 2014', fontsize=20)
+plt.xlabel('', fontsize=12)
 fig.autofmt_xdate()
-plt.ylabel('Temperature (F)', fontsize=16)
-plt.tick_params(axis='both', which='major', labelsize=16)
+plt.ylabel('Temperature (F)', fontsize=12)
+plt.tick_params(axis='both', which='major', labelsize=12)
 
 plt.show()
