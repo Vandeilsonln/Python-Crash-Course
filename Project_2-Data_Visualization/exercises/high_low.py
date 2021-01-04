@@ -11,23 +11,31 @@ def convertTemperature(degrees):
     return int(round((degrees - 32) * 5 / 9, 0))
 
 # Get dates, high and low temperatures from file.
-filename = 'sitka_weather_2014.csv'
+filename = 'death_valley_2014.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
     
     dates, highs, lows = [], [], []
     for row in reader:
-        current_date = datetime.strptime(row[0], "%Y-%m-%d")
-        dates.append(current_date)
+        try:
+            
+            current_date = datetime.strptime(row[0], "%Y-%m-%d")
+            highFarenheit = int(row[1])
+            lowFahrenheit = int(row[3])
+            
+        except ValueError:
+            print(current_date, 'missing data')
+        
+        else:
+            dates.append(current_date)
 
-        highFarenheit = int(row[1])
-        highCelsius = convertTemperature(highFarenheit)
-        highs.append(highCelsius)
+            highCelsius = convertTemperature(highFarenheit)
+            highs.append(highCelsius)
 
-        lowFahrenheit = int(row[3])
-        lowCelsius = convertTemperature(lowFahrenheit)
-        lows.append(lowCelsius)
+            lowCelsius = convertTemperature(lowFahrenheit)
+            lows.append(lowCelsius)
+
 
 # Plot data
 fig = plt.figure(dpi=128, figsize=(9, 6))
@@ -36,7 +44,7 @@ plt.plot(dates, lows, c='blue', alpha=0.5)
 plt.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
 
 # Format plot
-plt.title('Daily high and low temperatures - 2014', fontsize=20)
+plt.title('Daily high and low temperatures - 2014\nDeath Valley, CA', fontsize=20)
 plt.xlabel('', fontsize=12)
 fig.autofmt_xdate()
 plt.ylabel('Temperature (F)', fontsize=12)
