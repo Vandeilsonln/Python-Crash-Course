@@ -1,7 +1,7 @@
 from os import chdir
 import json
 import pygal
-from pygal.style import RotateStyle
+from pygal.style import RotateStyle, LightColorizedStyle
 from country_codes import get_country_code
 
 # Set CWD
@@ -36,7 +36,7 @@ for cc, pop in cc_populations.items():
     else:
         cc_pops3[cc] = pop
 
-wm_style = RotateStyle('#336699')
+wm_style = RotateStyle('#3366bb', base_style=LightColorizedStyle)
 wm = pygal.maps.world.World(style=wm_style)
 wm.title = 'World Population in 2010, by Country'
 wm.add('0-10m', cc_pops1)
