@@ -1,4 +1,6 @@
 import requests
+import pygal
+from pygal.style import LightColorizedStyle as LCS, LigthenStyle as LS
 
 
 # Make an API call and store the response
@@ -12,14 +14,17 @@ print('Total repositories:', response_dict['total_count'])
 
 # Explore information about the repositories.
 repo_dicts = response_dict['items']
-print('repositories returned:', len(repo_dicts))
 
-print('\nSelected information about each repository:')
+names, stars = [], []
 for repo_dict in repo_dicts:
-    print('\nName:', repo_dict['name'])
-    print('Owner':, repo_dict['owner']['login'])
-    print('Stars:', repo_dict['stargazers_count'])
-    print('Repository:', repo_dict['html_url'])
-    print('Description:', repo_dict['description'])
+    names.append(repo_dict['name'])
+    stars.append(repo_dict['stargazers_count'])
 
-    
+# Make visualization.
+my_style = LS('#333366', base_style=LCS)
+chart = pygal.Bar(style=my_style, x_label_rotation=45, show_legend=False)
+chart.title = 'Most-Starred Python Projects on GitHub'
+chart.x_labels = names
+
+chart.add('', stars)
+chart.render_to_file('./Project_2-Data_Visualization/exercises/python_repos.svg')
